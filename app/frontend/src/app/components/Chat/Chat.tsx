@@ -26,6 +26,13 @@ const Chat: React.FunctionComponent<{}> = () => {
     content: string;
     type = 'Query';
 
+    /**
+     * @description Establishes an object's initial properties upon creation, defining
+     * the object's content to be the input `string`.
+     * 
+     * @param { string } content - content of the function, assigning it to a variable
+     * named `this.content`.
+     */
     constructor(content: string) {
       this.content = content;
     }
@@ -35,6 +42,12 @@ const Chat: React.FunctionComponent<{}> = () => {
     content: string[];
     type = 'Answer';
 
+    /**
+     * @description Sets `this.content` to a provided `string[]`.
+     * 
+     * @param { string[] } content - array of strings that will be assigned to the object's
+     * `content` field upon initialization.
+     */
     constructor(content: string[]) {
       this.content = content;
     }
@@ -44,6 +57,13 @@ const Chat: React.FunctionComponent<{}> = () => {
     content: string[];
     type = 'Sources';
 
+    /**
+     * @description Initializes a class instance by setting the `content` property to an
+     * array of strings passed as an argument.
+     * 
+     * @param { string[] } content - array of strings that is assigned to the `content`
+     * property of the constructor object.
+     */
     constructor(content: string[]) {
       this.content = content;
     }
@@ -52,6 +72,13 @@ const Chat: React.FunctionComponent<{}> = () => {
   class Message {
     content: Query | Answer | Sources;
 
+    /**
+     * @description Assigns the `content` property to a provided value, which can be a
+     * `Query`, `Answer`, or `Sources` object.
+     * 
+     * @param { Query | Answer | Sources } content - documentation for code that is
+     * assigned to it within the constructor function.
+     */
     constructor(content: Query | Answer | Sources) {
       this.content = content;
     }
@@ -60,6 +87,13 @@ const Chat: React.FunctionComponent<{}> = () => {
   class MessageHistory {
     content: Message[];
 
+    /**
+     * @description Sets the `content` field of a message class object to a provided array
+     * of message objects.
+     * 
+     * @param { Message[] } content - message array passed to the constructor of a `Message`
+     * class.
+     */
     constructor(content: Message[]) {
       this.content = content;
     }
@@ -102,6 +136,10 @@ const Chat: React.FunctionComponent<{}> = () => {
 
   // Loads the collections from the backend on startup
   React.useEffect(() => {
+    /**
+     * @description Retrieves a list of collections from an API endpoint and sets the
+     * collections array to the retrieved data.
+     */
     const fetchCollections = async () => {
       const response = await fetch(`${config.backend_api_url}/collections`);
       const data = await response.json();
@@ -307,6 +345,33 @@ const Chat: React.FunctionComponent<{}> = () => {
    * @returns The rendered markdown content.
    */
   const MarkdownRenderer = ({ children: markdown }: MarkdownRendererProps) => {
+    /**
+     * @description Generates high-quality documentation for code given to it.
+     * 
+     * @param { string } className - CSS class to be applied to the generated HTML element,
+     * allowing for custom styling of the code output.
+     * 
+     * @param { array } remarkPlugins - 3rd-party plugins for the Remark module, allowing
+     * you to customize the behavior of Markdown rendering within the component.
+     * 
+     * @param { array } rehypePlugins - 3rd party plugins that are used to convert Markdown
+     * text into HTML using RehypeJS library.
+     * 
+     * @param { HTMLDivElement. } components - HTML components that are used to render
+     * the Markdown text.
+     * 
+     * 		- `components`: an object containing various Markdown-related components, including
+     * `code`.
+     * 		- `code`: a component for rendering code snippets with syntax highlighting. The
+     * `language` property is optional and defaults to `language-generic`. The `style`
+     * property is required and specifies the CSS style for syntax highlighting. The
+     * `PreTag` property is also optional and defaults to `div`. The `props` property is
+     * an object that can contain various attributes for customizing the code rendering,
+     * such as `className`.
+     * 
+     * 	Therefore, we can destructure the `components` object to access its properties
+     * and use them to generate high-quality documentation for the given code.
+     */
     return (
       <Markdown className='chat-question-text'
         remarkPlugins={[remarkGfm]}
@@ -349,6 +414,32 @@ const Chat: React.FunctionComponent<{}> = () => {
                     </TextContent>
                   </FlexItem>
                   <FlexItem>
+                    {/**
+                     * @description Enables users to select a product from a list of collections, displaying
+                     * each collection's corresponding products as options for selection.
+                     * 
+                     * @param { string } value - current selected product.
+                     * 
+                     * @param { function. } onChange - function to be called when the selection of product
+                     * changes, allowing the application to update its state according to the selected product.
+                     * 
+                     * 		- `value`: The value of the select element, which can be assigned to a variable
+                     * for further processing.
+                     * 		- `onChange`: An event handler function that is called when the selection in the
+                     * dropdown list changes. It receives the `newValue` argument, which represents the
+                     * new selected value.
+                     * 
+                     * @param { string } aria-label - accessible label text for the FormSelect component,
+                     * which assists users with disabilities in understanding the purpose of the form
+                     * control and navigating through it.
+                     * 
+                     * @param { string } ouiaId - 12-digit Ontario Universally Unique Identifier (OUU)
+                     * for the product, which is used to uniquely identify the product within the province
+                     * of Ontario.
+                     * 
+                     * @param { string } className - class attribute for the Select element, specifying
+                     * the CSS class to apply to the component.
+                     */}
                     <FormSelect
                       value={product}
                       onChange={onChangeProduct}
@@ -371,6 +462,33 @@ const Chat: React.FunctionComponent<{}> = () => {
                     </TextContent>
                   </FlexItem>
                   <FlexItem>
+                    {/**
+                     * @description Is used to render a form select component that allows the user to
+                     * choose from multiple versions or languages. The selected version or language is
+                     * stored in the `selectedVersion` variable and can be updated through the `onChangeVersion`
+                     * handler.
+                     * 
+                     * @param { string } value - selected version in the `FormSelect` component, which
+                     * is used to display the corresponding version label in the `onChange()` event.
+                     * 
+                     * @param { `event`. } onChange - event handler for when the selection changes and
+                     * it will trigger whenever there is any change of value in the selected version
+                     * 
+                     * 		- `value`: The selected value of the form select input.
+                     * 		- `onChange`: A callback function that is triggered when the user selects a new
+                     * value from the dropdown menu. It takes two arguments: the value of the selected
+                     * item and the event object.
+                     * 
+                     * @param { string } aria-label - accessibility label for the `FormSelect` component
+                     * and is used to inform screen readers of the component's purpose, helping users
+                     * navigate and interact with it more easily.
+                     * 
+                     * @param { string } ouiaId - ouia ID of the form select element, which is used to
+                     * associate the accessibility properties with the select component.
+                     * 
+                     * @param { string } className - class name for the select component, allowing you
+                     * to customize the CSS styles applied to it.
+                     */}
                     <FormSelect
                       value={selectedVersion}
                       onChange={onChangeVersion}
@@ -427,10 +545,21 @@ const Chat: React.FunctionComponent<{}> = () => {
               <CardBody className='chat-card-body'>
                 <Stack>
                   <StackItem isFilled className='chat-bot-answer' id='chatBotAnswer'>
+                    {/**
+                     * @description Maps and renders message content, sources, or answers from a chat
+                     * history based on their type.
+                     */}
                     <TextContent>
 
                       {/* Message History rendering */}
                       {messageHistory.content.map((message: Message, index) => {
+                        /**
+                         * @description Handles different types of messages and generates high-quality
+                         * documentation for each type based on the content provided in the message.
+                         * 
+                         * @returns { Component } a chat item with either an orb, a source link, or source
+                         * text depending on the type of message.
+                         */
                         const renderMessage = () => {
                           if (message.content.content.length != 0) {
                             if (message.content.type === "Query" && message.content.content != "") { // If the message is a query
@@ -454,9 +583,22 @@ const Chat: React.FunctionComponent<{}> = () => {
                             } else if (message.content.type === "Sources") { // If the message is a source
                               return <Grid className='chat-item'>
                                 <GridItem span={1} className='grid-item-orb'>&nbsp;</GridItem>
+                                {/**
+                                 * @description Takes a message with content as input and returns a list of text
+                                 * components that display the message's content, including URLs, in a grid-like layout.
+                                 * 
+                                 * @param { string } span - 11th grid item in the `Chat` component.
+                                 */}
                                 <GridItem span={11}>
                                   <Text component={TextVariants.p} className='chat-source-text'>{"References: "}</Text>
                                   {message.content && (message.content.content as string[]).map((source, index) => {
+                                    /**
+                                     * @description Determines the visual representation of a chat source based on its
+                                     * beginning, either an HTTP link or a plain text message.
+                                     * 
+                                     * @returns { string } a string of HTML markup containing either an `<a>` element or
+                                     * plain text, depending on the value of the `source` parameter.
+                                     */
                                     const renderSource = () => {
                                       if (source.startsWith('http')) {
                                         return <Text component={TextVariants.p} className='chat-source-text'>
@@ -497,10 +639,24 @@ const Chat: React.FunctionComponent<{}> = () => {
                           <GridItem span={1} className='grid-item-orb'>
                             <img src={orb} className='orb' />
                           </GridItem>
+                          {/**
+                           * @description Generates high-quality documentation for given code using the
+                           * MarkdownRenderer component and displays references to the source material.
+                           * 
+                           * @param { number } span - 11th grid item in the component.
+                           */}
                           <GridItem span={11}>
                             <MarkdownRenderer>{answerText.content.join("")}</MarkdownRenderer>
                             <Text component={TextVariants.p} className='chat-source-text'>{answerSources.content.length != 0 && "References: "}</Text>
                             {answerSources && answerSources.content.map((source, index) => {
+                              /**
+                               * @description Determines the rendering of a chat message's source based on the
+                               * provided string. If the source starts with 'http', it creates an anchor tag around
+                               * the source, linking to the URL. Otherwise, it simply displays the source as text.
+                               * 
+                               * @returns { Component } a piece of text that links to the provided source or displays
+                               * it as-is, depending on whether the source starts with 'http'.
+                               */
                               const renderSource = () => {
                                 if (source.startsWith('http')) {
                                   return <Text component={TextVariants.p} className='chat-source-text'>
@@ -528,6 +684,52 @@ const Chat: React.FunctionComponent<{}> = () => {
                     <Panel variant="raised">
                       <PanelMain>
                         <PanelMainBody className='chat-input-panel-body'>
+                          {/**
+                           * @description Is designed to receive and handle user input for queries, allowing
+                           * users to ask questions by typing into an input field, and triggering the execution
+                           * of the `sendQueryText()` function when the Enter key is pressed.
+                           * 
+                           * @param { string } value - text content of the query box, and its purpose is to set
+                           * the value of the `queryText` variable.
+                           * 
+                           * @param { string } type - type of text that will be interpreted as query input.
+                           * 
+                           * @param { `event.target.value`. } onChange - content of the query text field, and
+                           * whenever it is updated by the user typing or pasting text into the field, its value
+                           * is set to the updated content of the text area.
+                           * 
+                           * 	value: A property that represents the current value of the input. It takes a
+                           * string type and is updated whenever the user types or pastes text into the input
+                           * field.
+                           * 
+                           * 	type: An attribute that specifies the input's `type` property to be "text".
+                           * 
+                           * 	onChange: An event handler that runs when the input's value changes. It takes an
+                           * `event` object as its argument and allows developers to modify the input's value
+                           * or perform other actions in response to user input.
+                           * 
+                           * 	aria-label: An attribute that provides a human-readable label for the input
+                           * element, helping screen readers communicate the input's purpose to users.
+                           * 
+                           * 	placeholder: An attribute that sets a placeholder text for the input field, helping
+                           * users provide valid input without feeling lost or abandoned in a sea of blank space.
+                           * 
+                           * 	onKeyDown: An event handler that runs when the user presses a key while the input
+                           * field has focus. It takes an `event` object as its argument and allows developers
+                           * to perform actions based on keyboard inputs. In this case, it prevents the default
+                           * behavior of submitting the query when the enter key is pressed, allowing developers
+                           * to handle the query submission manually instead.
+                           * 
+                           * @param { string } aria-label - text label of an interface component for accessibility
+                           * purposes.
+                           * 
+                           * @param { string } placeholder - placeholder text that is displayed in the text
+                           * area when the user first opens it, and helps guide their input by suggesting what
+                           * they can ask.
+                           * 
+                           * @param { object } onKeyDown - enter key on the user's keyboard, which triggers the
+                           * `sendQueryText()` function when pressed.
+                           */}
                           <TextArea
                             value={queryText.content}
                             type="text"
